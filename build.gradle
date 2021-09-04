@@ -3,6 +3,11 @@ plugins {
     id 'java'
 }
 
+
+apply plugin: 'application'
+
+mainClassName = 'CoffeeMachine'
+
 group 'org.example'
 version '1.0-SNAPSHOT'
 
