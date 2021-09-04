@@ -29,4 +29,10 @@ class CoffeeMachineServiceTest {
     fun makeBeverageFailedTest(){
         assert(!coffeeMachineService.makeBeverage(Beverage("cold_coffee", mapOf("cold_milk" to 200, "sugar_syrup" to 100))))
     }
+
+    @Test
+    fun makeBeverageAfterIngredientAddition(){
+        coffeeMachineService.addInventory("cold_milk", 300)
+        assert(coffeeMachineService.makeBeverage(Beverage("cold_coffee", mapOf("cold_milk" to 200, "sugar_syrup" to 100))))
+    }
 }

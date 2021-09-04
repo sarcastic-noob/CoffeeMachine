@@ -48,7 +48,7 @@ class CoffeeMachineService {
     }
 
     @Synchronized
-    private fun addInventory(inventoryItem: String, quantity: Int) {
+    fun addInventory(inventoryItem: String, quantity: Int) {
         inventory[inventoryItem] = (inventory[inventoryItem] ?: 0) + quantity
     }
 }
