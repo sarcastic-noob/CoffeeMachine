@@ -21,9 +21,6 @@ class CoffeeMachineService {
             executor.submit { makeBeverage(it) }
         }
         executor.shutdown() // Triggered executor shut down after all submitted processes are complete
-        while (!executor.isTerminated) {
-            // waiting for
-        }
     }
 
     fun getItemsWithLowInventory(): List<String> {
