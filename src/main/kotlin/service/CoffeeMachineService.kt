@@ -34,7 +34,7 @@ class CoffeeMachineService {
     fun makeBeverage(beverage: Beverage) {
         for (ingredient in beverage.ingredientMap) {
             val inventoryItemForIngredient = inventory[ingredient.key]
-            if (inventoryItemForIngredient == null) {
+            if (inventoryItemForIngredient == null || inventoryItemForIngredient <= 0) {
                 println("${beverage.name} can not be prepared because ${ingredient.key} is not available")
                 return
             }
