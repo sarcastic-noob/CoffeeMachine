@@ -28,22 +28,23 @@ class CoffeeMachineService {
     }
 
     @Synchronized
-    fun makeBeverage(beverage: Beverage) {
+    fun makeBeverage(beverage: Beverage): Boolean {
         for (ingredient in beverage.ingredientMap) {
             val inventoryItemForIngredient = inventory[ingredient.key]
             if (inventoryItemForIngredient == null || inventoryItemForIngredient <= 0) {
                 println("${beverage.name} can not be prepared because ${ingredient.key} is not available")
-                return
+                return false
             }
             if (inventoryItemForIngredient < ingredient.value) {
                 println("${beverage.name} can not be prepared because ${ingredient.key} is not sufficient")
-                return
+                return false
             }
         }
         beverage.ingredientMap.forEach {
             inventory[it.key] = inventory[it.key]!! - it.value
         }
         println("${beverage.name} is created")
+        return true
     }
 
     @Synchronized
