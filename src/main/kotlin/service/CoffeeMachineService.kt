@@ -11,6 +11,11 @@ class CoffeeMachineService {
     private val lowInventoryWarningThreshold =
         20 // Arbitrary number for low inventory warning(unspecified metric in problem statement)
 
+    /**
+    Initialize the lateinit properties, using ExecutorService to manage threads which represent the outlets
+     with respect to the coffee machine
+     Setting up initial inventory as described in the example
+     * */
     fun init(outletCount: Int, currentInventory: Map<String, Int>) {
         executor = Executors.newFixedThreadPool(outletCount)
         inventory = currentInventory.toMutableMap()
@@ -27,6 +32,9 @@ class CoffeeMachineService {
         return inventory.filter { it.value < lowInventoryWarningThreshold }.keys.toList()
     }
 
+    /**
+    Using Synchronized annotation from Jvm to ensure not more than one thread updates the inventory at a time
+    * */
     @Synchronized
     fun makeBeverage(beverage: Beverage): Boolean {
         for (ingredient in beverage.ingredientMap) {

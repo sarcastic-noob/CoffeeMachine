@@ -3,6 +3,9 @@ import domain.MachineHolder
 import service.CoffeeMachineService
 import java.io.File
 
+/**
+Main class to start an instance of the machine
+ * */
 class CoffeeMachine {
     companion object {
         @JvmStatic
